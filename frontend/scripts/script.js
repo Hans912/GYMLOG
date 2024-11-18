@@ -5,10 +5,6 @@ document.querySelector('#signup-form').addEventListener('submit', async (e) => {
   const username = e.target.username.value;
   const password = e.target.password.value;
 
-  console.log('Username:', username);
-console.log('Password:', password);
-
-
   const response = await fetch(`${API_BASE}/auth/signup`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
