@@ -1,4 +1,4 @@
-const API_BASE = 'http://localhost:5000'; // Update this after deploying backend
+const API_BASE = 'https://gymlog-k2um.onrender.com'; // Update this after deploying backend
 
 document.querySelector('#signup-form').addEventListener('submit', async (e) => {
   e.preventDefault();
