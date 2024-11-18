@@ -6,23 +6,11 @@ const Account = require('../models/Account'); // Updated from '../models/User'
 const router = express.Router();
 
 // Signup
-const express = require('express');
-const bcrypt = require('bcryptjs');
-const Account = require('../models/Account'); // Adjust model path if needed
-
 router.post('/signup', async (req, res) => {
   try {
     const { username, password } = req.body;
-
-    // Hash password
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    // Create new user
-    const user = new Account({ username, password: hashedPassword });
-
-    // Save user to database
+    const user = new Account({ username, password });
     await user.save();
-
     res.status(201).json({ message: 'User created successfully!' });
   } catch (err) {
     res.status(400).json({ error: err.message });
