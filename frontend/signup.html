@@ -3,20 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://kit.fontawesome.com/7703f3cfbe.js" crossorigin="anonymous"></script>
   <link rel = "stylesheet" href = "styles/reset.css">
   <link rel = "stylesheet" href = "styles/style.css">
-  
+
   <title>GYMLOG Sign Up</title>
 </head>
 <body>
-  <div class="container">
-    <h1>Sign Up</h1>
-    <form id="signup-form">
-      <input type="text" name="username" placeholder="Username" required />
-      <input type="password" name="password" placeholder="Password" required />
-      <button type="submit">Sign Up</button>
-    </form>
-    <p>Already have an account? <a href="login.html">Log In</a></p>
+  <div class="grid">
+    <header>
+      <div>
+          <h1>GYMLOG</h1>
+      </div>
+      
+      <nav class="top_nav">
+          <a href="index.html">About</a>
+      </nav>
+    </header>
+
+    <div class="container">
+      <h1>Sign Up</h1>
+      <form id="signup-form">
+        <input type="text" name="username" placeholder="Username" required />
+        <input type="password" name="password" placeholder="Password" required />
+        <button type="submit">Sign Up</button>
+      </form>
+      <p>Already have an account? <a href="login.html">Log In</a></p>
+    </div>
+
+    <footer>
+      <p>GYMLOG</p>
+      <div>
+          <a href = "https://github.com/Hans912"><i class="fa-brands fa-github fa-2xl" aria-label="Github"></i></a>
+          <a href = "https://www.instagram.com/juans912/?locale=uken1"><i class="fa-brands fa-instagram fa-2xl" aria-label="Instagram"></i></a>
+      </div>
+    </footer>
   </div>
   <script src="scripts/signup.js"></script>
 </body>
