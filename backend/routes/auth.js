@@ -25,6 +25,30 @@ router.post('/signup', async (req, res) => {
       res.status(500).json({ error: 'Internal Server Error' });
     }
   });
+
+  router.post('/login', async (req, res) => {
+    const { username, password } = req.body;
+  
+    try {
+      // Find user by username
+      const user = await Account.findOne({ username });
+      if (!user) {
+        return res.status(404).json({ error: 'User not found' });
+      }
+  
+      // Compare passwords
+      const isMatch = await bcrypt.compare(password, user.password);
+      if (!isMatch) {
+        return res.status(401).json({ error: 'Invalid credentials' });
+      }
+  
+      res.status(200).json({ message: 'Login successful' });
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  });
+  
   
 
 module.exports = router;

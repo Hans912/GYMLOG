@@ -12,13 +12,14 @@ document.querySelector('#login-form').addEventListener('submit', async (e) => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ username, password }),
     });
-
+  
     if (!response.ok) {
-      const data = await response.json();
-      throw new Error(data.error || 'Login failed');
+      const data = await response.json().catch(() => null); // Avoid parsing non-JSON errors
+      throw new Error(data?.error || `HTTP error ${response.status}`);
     }
-
+  
     const data = await response.json();
+    alert('Login successful!');
     sessionStorage.setItem('username', username);
     window.location.href = 'hello.html';
   } catch (err) {
