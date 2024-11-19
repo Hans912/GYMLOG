@@ -1,5 +1,6 @@
 .grid{
     display: grid;
+    min-height: 100vh;
 }  
 
 header {
@@ -19,7 +20,7 @@ header {
 footer {
     background-color: #005BC3;
     color: white;
-    position: absolute;
+    /* position: absolute; */
     padding: 10px 20px;
     bottom: 0;
     width: 100%;
