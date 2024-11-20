@@ -69,6 +69,7 @@ input, button {
 .container {
     width: 300px;
     margin: auto;
+    height: 100vh;
 }
 
 nav a{

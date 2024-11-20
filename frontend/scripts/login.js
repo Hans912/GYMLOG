@@ -21,7 +21,7 @@ document.querySelector('#login-form').addEventListener('submit', async (e) => {
     const data = await response.json();
     alert('Login successful!');
     sessionStorage.setItem('username', username);
-    window.location.href = 'hello.html';
+    window.location.href = 'account.html';
   } catch (err) {
     console.error(err);
     alert(err.message);
