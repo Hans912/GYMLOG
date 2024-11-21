@@ -61,7 +61,7 @@ a {
     text-decoration: none;
 }
 
-input, button {
+input, button, textarea {
     display: block;
     width: 100%;
 }
