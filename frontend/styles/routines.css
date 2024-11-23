@@ -41,7 +41,7 @@ body {
   /* Main content area */
   main {
     max-width: 800px;
-    margin: 15px auto;
+    /* margin: 15px auto; */
     padding: 1rem;
     background: white;
     border-radius: 8px;
