@@ -73,3 +73,10 @@ document.getElementById('routine-form').addEventListener('submit', async (e) => 
     alert('Failed to save routine. Please try again.');
   }
 });
+
+// Function to start a routine
+function startRoutine(routineId) {
+    // Redirect to the workout page with the routine ID in the query string
+    window.location.href = `workout.html?routineId=${routineId}`;
+  }
+  

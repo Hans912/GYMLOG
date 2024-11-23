@@ -44,23 +44,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Add event listener for finishing the workout
     document.getElementById('finish-workout').addEventListener('click', async () => {
       const exercises = [...routineDetailsDiv.querySelectorAll('li')].map((li) => {
-        const name = li.querySelector('li').textContent.trim();
+        const name = li.querySelector('div.set-log').previousSibling.textContent.trim();
         const sets = [...li.querySelectorAll('.set-log')].map((setLog) => ({
-          weight: parseInt(setLog.querySelector('.weight').value, 10) || 0, // Default to 0 if empty
-          reps: parseInt(setLog.querySelector('.reps').value, 10) || 0, // Default to 0 if empty
+          weight: parseInt(setLog.querySelector('.weight').value, 10),
+          reps: parseInt(setLog.querySelector('.reps').value, 10),
         }));
         return { name, sets };
       });
-
-      // Validate user input for sets
-      const hasInvalidSets = exercises.some((ex) =>
-        ex.sets.some((set) => isNaN(set.weight) || isNaN(set.reps))
-      );
-
-      if (hasInvalidSets) {
-        alert('Please fill in all weight and reps fields for each set.');
-        return;
-      }
 
       try {
         const response = await fetch(`${API_BASE}/workouts/save`, {
