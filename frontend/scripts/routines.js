@@ -1,3 +1,5 @@
+const API_BASE = 'https://gymlog-k2um.onrender.com'; // Replace with your actual backend URL
+
 const username = sessionStorage.getItem('username');
 if (!username) {
   window.location.href = 'login.html';
@@ -7,11 +9,11 @@ document.addEventListener('DOMContentLoaded', async () => {
   const savedRoutinesDiv = document.getElementById('saved-routines');
 
   try {
-    const response = await fetch(`/routines?username=${username}`);
+    const response = await fetch(`${API_BASE}/routines?username=${username}`);
+    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
     const routines = await response.json();
 
     if (routines.length === 0) {
-      // Show a message when there are no routines
       savedRoutinesDiv.innerHTML = '<p>You have no saved routines yet. Create one above!</p>';
     } else {
       routines.forEach((routine) => {
@@ -20,9 +22,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         routineDiv.innerHTML = `
           <h3>${routine.name}</h3>
           <ul>
-            ${routine.exercises
-              .map((ex) => `<li>${ex.name}: ${ex.sets} sets</li>`)
-              .join('')}
+            ${routine.exercises.map((ex) => `<li>${ex.name}: ${ex.sets} sets</li>`).join('')}
           </ul>
           <button onclick="startRoutine('${routine._id}')">Start Routine</button>
         `;
@@ -30,12 +30,12 @@ document.addEventListener('DOMContentLoaded', async () => {
       });
     }
   } catch (err) {
-    console.error(err);
-    alert('Error loading routines');
+    console.error('Error loading routines:', err.message);
+    alert('Error loading routines. Please try again later.');
   }
 });
 
-// Add exercise function remains the same
+// Add a new exercise to the routine form
 function addExercise() {
   const exerciseList = document.getElementById('exercise-list');
   const exerciseDiv = document.createElement('div');
@@ -46,7 +46,7 @@ function addExercise() {
   exerciseList.appendChild(exerciseDiv);
 }
 
-// Routine form submission
+// Save a new routine
 document.getElementById('routine-form').addEventListener('submit', async (e) => {
   e.preventDefault();
 
@@ -59,20 +59,17 @@ document.getElementById('routine-form').addEventListener('submit', async (e) => 
   });
 
   try {
-    const response = await fetch('/routines/save', {
+    const response = await fetch(`${API_BASE}/routines/save`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ username, name, exercises }),
     });
 
-    if (response.ok) {
-      alert('Routine saved successfully!');
-      location.reload();
-    } else {
-      alert('Failed to save routine. Please try again.');
-    }
+    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+    alert('Routine saved successfully!');
+    location.reload();
   } catch (err) {
-    console.error(err);
-    alert('Error saving routine');
+    console.error('Error saving routine:', err.message);
+    alert('Failed to save routine. Please try again.');
   }
 });

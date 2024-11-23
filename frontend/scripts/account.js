@@ -1,36 +1,28 @@
+// Set the correct API base URL (backend URL)
+const API_BASE = 'https://gymlog-k2um.onrender.com'; // Replace with your actual backend URL
+
 const username = sessionStorage.getItem('username');
 if (!username) {
   window.location.href = 'login.html';
 } else {
   document.getElementById('greeting').textContent = `Hello, ${username}!`;
-}
 
-document.addEventListener('DOMContentLoaded', async () => {
-  const container = document.getElementById('log-container');
-
-  try {
-    const response = await fetch(`/workouts?username=${username}`);
-    const workouts = await response.json();
-
-    workouts.forEach((workout) => {
-      const workoutDiv = document.createElement('div');
-      workoutDiv.className = 'workout';
-
-      workoutDiv.innerHTML = `
-        <h2>${workout.name} (${new Date(workout.date).toLocaleDateString()})</h2>
-        <ul>
-          ${workout.exercises
-            .map(
-              (ex) => `<li>${ex.name}: ${ex.sets.length} sets</li>`
-            )
-            .join('')}
-        </ul>
-      `;
-
-      container.appendChild(workoutDiv);
+  // Fetch past workouts for the logged-in user
+  fetch(`${API_BASE}/workouts?username=${username}`)
+    .then((response) => {
+      if (!response.ok) {
+        return response.text().then((text) => {
+          throw new Error(text || `HTTP error! status: ${response.status}`);
+        });
+      }
+      return response.json();
+    })
+    .then((workouts) => {
+      console.log('Workouts:', workouts);
+      // Render workouts on the page if needed
+    })
+    .catch((err) => {
+      console.error('Error fetching workouts:', err.message);
+      alert('Error fetching workouts. Please try again.');
     });
-  } catch (err) {
-    console.error(err);
-    alert('Error loading workouts');
-  }
-});
+}
