@@ -1,6 +1,5 @@
 /* General body styling */
 body {
-    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f4f4f9;
@@ -9,10 +8,15 @@ body {
   
   /* Header styling */
   header {
+    display: flex; 
+    justify-content: space-between;
+    align-items: center;
     background-color: #005BC3;
     color: white;
-    padding: 1rem;
+    padding: 10px 20px;
     text-align: center;
+    top: 0;
+    left: 0;
   }
   
   header h1 {
@@ -22,11 +26,15 @@ body {
   /* Main container styling */
   main {
     max-width: 800px;
-    margin: 2rem auto;
+    /* margin: 2rem auto; */
     padding: 1rem;
     background: white;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .WorkoutHeader{
+    padding: 10px 20px;
   }
   
   h2 {
@@ -67,6 +75,7 @@ body {
     display: flex;
     align-items: center;
     gap: 1rem;
+    width: 100vh;
   }
   
   .set-log label {
@@ -102,4 +111,27 @@ body {
     background-color: #cccccc;
     cursor: not-allowed;
   }
+
+  /* Footer styling */
+  footer {
+    width: 100%;
+    background-color: #005BC3;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    margin-top: 30px;
+    border-top: 4px solid black;
+}
+
+footer p{
+    font-weight: 600;
+    font-size:medium;
+    text-align: center;
+    padding: 10px;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
   
