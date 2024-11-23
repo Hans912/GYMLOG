@@ -31,10 +31,7 @@ if (!username) {
                 .map(
                   (ex) => `
                     <li>
-                      <strong>${ex.name}:</strong>
-                      ${ex.sets
-                        .map((set, index) => `Set ${index + 1}: ${set.weight}kg x ${set.reps} reps`)
-                        .join(', ')}
+                      <strong>${ex.name}:</strong> ${ex.sets.length} sets
                     </li>
                   `
                 )
