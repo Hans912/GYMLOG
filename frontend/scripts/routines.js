@@ -10,26 +10,32 @@ document.addEventListener('DOMContentLoaded', async () => {
     const response = await fetch(`/routines?username=${username}`);
     const routines = await response.json();
 
-    routines.forEach((routine) => {
-      const routineDiv = document.createElement('div');
-      routineDiv.className = 'routine';
-      routineDiv.innerHTML = `
-        <h3>${routine.name}</h3>
-        <ul>
-          ${routine.exercises
-            .map((ex) => `<li>${ex.name}: ${ex.sets} sets</li>`)
-            .join('')}
-        </ul>
-        <button onclick="startRoutine('${routine._id}')">Start Routine</button>
-      `;
-      savedRoutinesDiv.appendChild(routineDiv);
-    });
+    if (routines.length === 0) {
+      // Show a message when there are no routines
+      savedRoutinesDiv.innerHTML = '<p>You have no saved routines yet. Create one above!</p>';
+    } else {
+      routines.forEach((routine) => {
+        const routineDiv = document.createElement('div');
+        routineDiv.className = 'routine';
+        routineDiv.innerHTML = `
+          <h3>${routine.name}</h3>
+          <ul>
+            ${routine.exercises
+              .map((ex) => `<li>${ex.name}: ${ex.sets} sets</li>`)
+              .join('')}
+          </ul>
+          <button onclick="startRoutine('${routine._id}')">Start Routine</button>
+        `;
+        savedRoutinesDiv.appendChild(routineDiv);
+      });
+    }
   } catch (err) {
     console.error(err);
     alert('Error loading routines');
   }
 });
 
+// Add exercise function remains the same
 function addExercise() {
   const exerciseList = document.getElementById('exercise-list');
   const exerciseDiv = document.createElement('div');
@@ -40,6 +46,7 @@ function addExercise() {
   exerciseList.appendChild(exerciseDiv);
 }
 
+// Routine form submission
 document.getElementById('routine-form').addEventListener('submit', async (e) => {
   e.preventDefault();
 
@@ -52,13 +59,18 @@ document.getElementById('routine-form').addEventListener('submit', async (e) => 
   });
 
   try {
-    await fetch('/routines/save', {
+    const response = await fetch('/routines/save', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ username, name, exercises }),
     });
-    alert('Routine saved!');
-    location.reload();
+
+    if (response.ok) {
+      alert('Routine saved successfully!');
+      location.reload();
+    } else {
+      alert('Failed to save routine. Please try again.');
+    }
   } catch (err) {
     console.error(err);
     alert('Error saving routine');
