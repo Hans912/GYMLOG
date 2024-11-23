@@ -9,10 +9,15 @@ body {
   
   /* Header styling */
   header {
-    background-color: #007bff;
+    display: flex; 
+    justify-content: space-between;
+    align-items: center;
+    background-color: #005BC3;
     color: white;
-    padding: 1rem;
+    padding: 10px 20px;
     text-align: center;
+    top: 0;
+    left: 0;
   }
   
   header h1 {
