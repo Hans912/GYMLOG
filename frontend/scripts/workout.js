@@ -45,11 +45,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById('finish-workout').addEventListener('click', async () => {
         const routineDetailsDiv = document.getElementById('routine-details');
         const exercises = [...routineDetailsDiv.querySelectorAll('li')].map((li) => {
-          const name = li.querySelector('h3')?.textContent.trim() || ''; // Replace 'h3' with your actual tag
+          // Extract the name directly from the <li>'s text content
+          const name = li.textContent.split('-')[0].trim(); // "Squats - 2 sets" => "Squats"
+          
           const sets = [...li.querySelectorAll('.set-log')].map((setLog) => ({
             weight: parseInt(setLog.querySelector('.weight')?.value, 10) || 0,
             reps: parseInt(setLog.querySelector('.reps')?.value, 10) || 0,
           }));
+      
           return { name, sets };
         });
 
@@ -77,7 +80,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
     alert('Workout saved successfully!');
-    window.location.href = 'log.html'; // Redirect to past workouts page
+    window.location.href = 'account.html'; // Redirect to past workouts page
       } catch (err) {
         console.error('Error saving workout:', err.message);
         alert('Failed to save workout. Please try again.');
