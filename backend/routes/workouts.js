@@ -23,8 +23,19 @@ router.get('/', async (req, res) => {
 router.post('/save', async (req, res) => {
   const { username, name, exercises } = req.body;
 
+  console.log('Incoming workout save request:', req.body);
+
+  // Validate request body
   if (!username || !name || !Array.isArray(exercises)) {
-    return res.status(400).send('Invalid data. Please provide username, name, and exercises.');
+    console.error('Invalid data:', req.body);
+    return res.status(400).json({ error: 'Invalid data. Please provide username, name, and exercises.' });
+  }
+
+  // Validate each exercise
+  const invalidExercises = exercises.filter((ex) => !ex.name || ex.name.trim() === '');
+  if (invalidExercises.length > 0) {
+    console.error('Invalid exercises:', invalidExercises);
+    return res.status(400).json({ error: 'All exercises must have a valid name.' });
   }
 
   try {

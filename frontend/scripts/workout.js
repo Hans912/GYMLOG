@@ -43,29 +43,39 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Add event listener for finishing the workout
     document.getElementById('finish-workout').addEventListener('click', async () => {
-      const exercises = [...routineDetailsDiv.querySelectorAll('li')].map((li) => {
-        const name = li.querySelector('div.set-log').previousSibling.textContent.trim();
-        const sets = [...li.querySelectorAll('.set-log')].map((setLog) => ({
-          weight: parseInt(setLog.querySelector('.weight').value, 10),
-          reps: parseInt(setLog.querySelector('.reps').value, 10),
-        }));
-        return { name, sets };
-      });
+        const routineDetailsDiv = document.getElementById('routine-details');
+        const exercises = [...routineDetailsDiv.querySelectorAll('li')].map((li) => {
+          const name = li.querySelector('li').textContent.trim(); // Get exercise name
+          const sets = [...li.querySelectorAll('.set-log')].map((setLog) => ({
+            weight: parseInt(setLog.querySelector('.weight').value, 10) || 0,
+            reps: parseInt(setLog.querySelector('.reps').value, 10) || 0,
+          }));
+          return { name, sets };
+        });
 
-      try {
+      // Validate exercises before sending to backend
+    const invalidExercises = exercises.filter((ex) => !ex.name || ex.name.trim() === '');
+    if (invalidExercises.length > 0) {
+        alert('All exercises must have a name. Please review your inputs.');
+        return;
+    }
+
+    const payload = {
+        username: sessionStorage.getItem('username'),
+        name: document.querySelector('h2').textContent.trim(),
+        exercises,
+    };
+
+    try {
         const response = await fetch(`${API_BASE}/workouts/save`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            username: sessionStorage.getItem('username'),
-            name: routine.name,
-            exercises,
-          }),
+          body: JSON.stringify(payload),
         });
 
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-        alert('Workout saved successfully!');
-        window.location.href = 'log.html'; // Redirect to past workouts page
+    alert('Workout saved successfully!');
+    window.location.href = 'log.html'; // Redirect to past workouts page
       } catch (err) {
         console.error('Error saving workout:', err.message);
         alert('Failed to save workout. Please try again.');
