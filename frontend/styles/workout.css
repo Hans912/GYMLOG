@@ -74,7 +74,7 @@ body {
   .set-log {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 5px;
     width: auto;
   }
   
@@ -83,7 +83,7 @@ body {
   }
   
   .set-log input {
-    flex: 1;
+    /* flex: 1; */
     padding: 0.5rem;
     border: 1px solid #ccc;
     border-radius: 4px;
