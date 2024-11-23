@@ -8,27 +8,38 @@
   <link rel="stylesheet" href="styles/routines.css">
 </head>
 <body>
-  <header>
+    <header>
+        <div>
+            <h1>GYMLOG</h1>
+        </div>
+        
+        <nav class="top_nav">
+            <a href="account.html">Past Workouts</a>
+        </nav>
+    </header>
     <h1>Routines</h1>
-    <nav>
-      <a href="account.html">Past Workouts</a>
-    </nav>
-  </header>
-  <main>
-    <section id="routine-creator">
-      <h2>Create Routine</h2>
-      <form id="routine-form">
-        <input type="text" id="routine-name" placeholder="Routine Name" required />
-        <div id="exercise-list"></div>
-        <button type="button" onclick="addExercise()">Add Exercise</button>
-        <button type="submit">Save Routine</button>
-      </form>
-    </section>
-    <section id="routine-list">
-      <h2>Saved Routines</h2>
-      <div id="saved-routines"></div>
-    </section>
-  </main>
-  <script src="scripts/routines.js"></script>
+    <main>
+        <section id="routine-creator">
+        <h2>Create Routine</h2>
+        <form id="routine-form">
+            <input type="text" id="routine-name" placeholder="Routine Name" required />
+            <div id="exercise-list"></div>
+            <button type="button" onclick="addExercise()">Add Exercise</button>
+            <button type="submit">Save Routine</button>
+        </form>
+        </section>
+        <section id="routine-list">
+        <h2>Saved Routines</h2>
+        <div id="saved-routines"></div>
+        </section>
+    </main>
+    <footer>
+        <p>GYMLOG</p>
+        <div>
+            <a href = "https://github.com/Hans912"><i class="fa-brands fa-github fa-2xl" aria-label="Github"></i></a>
+            <a href = "https://www.instagram.com/juans912/?locale=uken1"><i class="fa-brands fa-instagram fa-2xl" aria-label="Instagram"></i></a>
+        </div>
+      </footer>
+    <script src="scripts/routines.js"></script>
 </body>
 </html>
