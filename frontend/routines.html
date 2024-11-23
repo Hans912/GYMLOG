@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Routines</title>
+  <link rel="stylesheet" href="styles/routines.css">
+</head>
+<body>
+  <header>
+    <h1>Routines</h1>
+    <nav>
+      <a href="account.html">Past Workouts</a>
+    </nav>
+  </header>
+  <main>
+    <section id="routine-creator">
+      <h2>Create Routine</h2>
+      <form id="routine-form">
+        <input type="text" id="routine-name" placeholder="Routine Name" required />
+        <div id="exercise-list"></div>
+        <button type="button" onclick="addExercise()">Add Exercise</button>
+        <button type="submit">Save Routine</button>
+      </form>
+    </section>
+    <section id="routine-list">
+      <h2>Saved Routines</h2>
+      <div id="saved-routines"></div>
+    </section>
+  </main>
+  <script src="scripts/routines.js"></script>
+</body>
+</html>
