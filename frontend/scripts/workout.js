@@ -45,10 +45,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById('finish-workout').addEventListener('click', async () => {
         const routineDetailsDiv = document.getElementById('routine-details');
         const exercises = [...routineDetailsDiv.querySelectorAll('li')].map((li) => {
-          const name = li.querySelector('li').textContent.trim(); // Get exercise name
+          const name = li.querySelector('h3')?.textContent.trim() || ''; // Replace 'h3' with your actual tag
           const sets = [...li.querySelectorAll('.set-log')].map((setLog) => ({
-            weight: parseInt(setLog.querySelector('.weight').value, 10) || 0,
-            reps: parseInt(setLog.querySelector('.reps').value, 10) || 0,
+            weight: parseInt(setLog.querySelector('.weight')?.value, 10) || 0,
+            reps: parseInt(setLog.querySelector('.reps')?.value, 10) || 0,
           }));
           return { name, sets };
         });
@@ -65,6 +65,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         name: document.querySelector('h2').textContent.trim(),
         exercises,
     };
+
+    console.log('Payload:', payload);
 
     try {
         const response = await fetch(`${API_BASE}/workouts/save`, {
