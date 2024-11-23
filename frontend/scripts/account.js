@@ -7,22 +7,46 @@ if (!username) {
 } else {
   document.getElementById('greeting').textContent = `Hello, ${username}!`;
 
-  // Fetch past workouts for the logged-in user
-  fetch(`${API_BASE}/workouts?username=${username}`)
-    .then((response) => {
-      if (!response.ok) {
-        return response.text().then((text) => {
-          throw new Error(text || `HTTP error! status: ${response.status}`);
+  document.addEventListener('DOMContentLoaded', async () => {
+    const logContainer = document.getElementById('log-container');
+  
+    try {
+      const response = await fetch(`${API_BASE}/workouts?username=${username}`);
+      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+  
+      const workouts = await response.json();
+      console.log('Workouts:', workouts); // Debugging log
+  
+      if (workouts.length === 0) {
+        logContainer.innerHTML = '<p>No workouts found. Start your first workout today!</p>';
+      } else {
+        workouts.forEach((workout) => {
+          const workoutDiv = document.createElement('div');
+          workoutDiv.className = 'workout';
+  
+          workoutDiv.innerHTML = `
+            <h2>${workout.name} (${new Date(workout.date).toLocaleDateString()})</h2>
+            <ul>
+              ${workout.exercises
+                .map(
+                  (ex) => `
+                    <li>
+                      <strong>${ex.name}:</strong>
+                      ${ex.sets
+                        .map((set, index) => `Set ${index + 1}: ${set.weight}kg x ${set.reps} reps`)
+                        .join(', ')}
+                    </li>
+                  `
+                )
+                .join('')}
+            </ul>
+          `;
+          logContainer.appendChild(workoutDiv);
         });
       }
-      return response.json();
-    })
-    .then((workouts) => {
-      console.log('Workouts:', workouts);
-      // Render workouts on the page if needed
-    })
-    .catch((err) => {
-      console.error('Error fetching workouts:', err.message);
-      alert('Error fetching workouts. Please try again.');
-    });
+    } catch (err) {
+      console.error('Error loading workouts:', err.message);
+      logContainer.innerHTML = '<p>Error loading workouts. Please try again later.</p>';
+    }
+  });
 }
