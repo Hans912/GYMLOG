@@ -53,9 +53,9 @@ body {
   }
   
   h2 {
-    color: #007bff;
+    color: #005BC3;
     margin-bottom: 1rem;
-    border-bottom: 2px solid #007bff;
+    border-bottom: 2px solid #005BC3;
     padding-bottom: 0.5rem;
   }
   
@@ -94,7 +94,7 @@ body {
   }
   
   button {
-    background-color: #007bff;
+    background-color: #005BC3;
     color: white;
     border: none;
     padding: 0.7rem 1rem;
