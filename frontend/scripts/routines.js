@@ -1,89 +1,82 @@
-const API_BASE = 'https://gymlog-k2um.onrender.com'; // Replace with your backend URL
+const API_BASE = 'https://gymlog-k2um.onrender.com'; // Replace with your actual backend URL
+
+const username = sessionStorage.getItem('username');
+if (!username) {
+  window.location.href = 'login.html';
+}
 
 document.addEventListener('DOMContentLoaded', async () => {
-  // Parse routineId from the query string
-  const params = new URLSearchParams(window.location.search);
-  const routineId = params.get('routineId');
-  if (!routineId) {
-    alert('Routine ID not found. Redirecting back to routines page.');
-    window.location.href = 'routines.html';
-    return;
-  }
+  const savedRoutinesDiv = document.getElementById('saved-routines');
 
   try {
-    // Fetch routine details from the backend
-    const response = await fetch(`${API_BASE}/routines/${routineId}`);
+    const response = await fetch(`${API_BASE}/routines?username=${username}`);
     if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-    const routine = await response.json();
+    const routines = await response.json();
 
-    // Display routine details
-    const routineDetailsDiv = document.getElementById('routine-details');
-    routineDetailsDiv.innerHTML = `
-      <h2>${routine.name}</h2>
-      <ul>
-        ${routine.exercises
-          .map(
-            (ex) =>
-              `<li>
-                ${ex.name} - ${ex.sets} sets
-                <div class="set-logs">
-                  ${Array.from({ length: ex.sets }, (_, i) => `
-                    <div class="set-log">
-                      <label>Set ${i + 1}: </label>
-                      <input type="number" placeholder="Weight (kg)" class="weight" />
-                      <input type="number" placeholder="Reps" class="reps" />
-                    </div>
-                  `).join('')}
-                </div>
-              </li>`
-          )
-          .join('')}
-      </ul>
-    `;
-
-    // Add event listener for finishing the workout
-    document.getElementById('finish-workout').addEventListener('click', async () => {
-      const exercises = [...routineDetailsDiv.querySelectorAll('li')].map((li) => {
-        const name = li.querySelector('li').textContent.trim();
-        const sets = [...li.querySelectorAll('.set-log')].map((setLog) => ({
-          weight: parseInt(setLog.querySelector('.weight').value, 10) || 0, // Default to 0 if empty
-          reps: parseInt(setLog.querySelector('.reps').value, 10) || 0, // Default to 0 if empty
-        }));
-        return { name, sets };
+    if (routines.length === 0) {
+      savedRoutinesDiv.innerHTML = '<p>You have no saved routines yet. Create one above!</p>';
+    } else {
+      routines.forEach((routine) => {
+        const routineDiv = document.createElement('div');
+        routineDiv.className = 'routine';
+        routineDiv.innerHTML = `
+          <h3>${routine.name}</h3>
+          <ul>
+            ${routine.exercises.map((ex) => `<li>${ex.name}: ${ex.sets} sets</li>`).join('')}
+          </ul>
+          <button onclick="startRoutine('${routine._id}')">Start Routine</button>
+        `;
+        savedRoutinesDiv.appendChild(routineDiv);
       });
-
-      // Validate user input for sets
-      const hasInvalidSets = exercises.some((ex) =>
-        ex.sets.some((set) => isNaN(set.weight) || isNaN(set.reps))
-      );
-
-      if (hasInvalidSets) {
-        alert('Please fill in all weight and reps fields for each set.');
-        return;
-      }
-
-      try {
-        const response = await fetch(`${API_BASE}/workouts/save`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            username: sessionStorage.getItem('username'),
-            name: routine.name,
-            exercises,
-          }),
-        });
-
-        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-        alert('Workout saved successfully!');
-        window.location.href = 'log.html'; // Redirect to past workouts page
-      } catch (err) {
-        console.error('Error saving workout:', err.message);
-        alert('Failed to save workout. Please try again.');
-      }
-    });
+    }
   } catch (err) {
-    console.error('Error loading routine details:', err.message);
-    alert('Error loading routine details. Please try again later.');
-    window.location.href = 'routines.html';
+    console.error('Error loading routines:', err.message);
+    alert('Error loading routines. Please try again later.');
   }
 });
+
+// Add a new exercise to the routine form
+function addExercise() {
+  const exerciseList = document.getElementById('exercise-list');
+  const exerciseDiv = document.createElement('div');
+  exerciseDiv.innerHTML = `
+    <input type="text" class="exercise-name" placeholder="Exercise Name" required />
+    <input type="number" class="exercise-sets" placeholder="Sets" required />
+  `;
+  exerciseList.appendChild(exerciseDiv);
+}
+
+// Save a new routine
+document.getElementById('routine-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  const name = document.getElementById('routine-name').value;
+  const exercises = [...document.querySelectorAll('#exercise-list div')].map((div) => {
+    return {
+      name: div.querySelector('.exercise-name').value,
+      sets: parseInt(div.querySelector('.exercise-sets').value, 10),
+    };
+  });
+
+  try {
+    const response = await fetch(`${API_BASE}/routines/save`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username, name, exercises }),
+    });
+
+    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+    alert('Routine saved successfully!');
+    location.reload();
+  } catch (err) {
+    console.error('Error saving routine:', err.message);
+    alert('Failed to save routine. Please try again.');
+  }
+});
+
+// Function to start a routine
+function startRoutine(routineId) {
+    // Redirect to the workout page with the routine ID in the query string
+    window.location.href = `workout.html?routineId=${routineId}`;
+  }
+  
