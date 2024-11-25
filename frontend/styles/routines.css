@@ -189,12 +189,12 @@ a{
         text-decoration: underline; /* Feedback for hover states */
     }
 
-    main {
-        background-color: #1e1e1e; /* Darker content background */
-        border: 1px solid #444; /* Subtle border for distinction */
+    /* main {
+        background-color: #1e1e1e; 
+        border: 1px solid #444; 
         border-radius: 8px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.6); /* Enhance depth */
-    }
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.6); 
+    } */
 
     h1, h2 {
         color: #1e90ff; /* Highlighted header text */
