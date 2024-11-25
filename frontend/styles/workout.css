@@ -222,6 +222,10 @@ a{
         color: #f4f4f9;
     }
 
+    h1{
+        color: 1e90ff;
+    }
+
     header nav a {
         color: #1e90ff; /* Vibrant link color */
         font-weight: bold;
@@ -282,10 +286,6 @@ a{
 
     footer p {
         color: #f4f4f9;
-    }
-
-    footer a {
-        color: #1e90ff; /* Vibrant footer links */
     }
 }
 
