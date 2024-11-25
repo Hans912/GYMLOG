@@ -159,3 +159,10 @@ footer a{
         background-color: #0073e6;
     }
 }
+
+@media (prefers-reduced-motion: reduce) {
+    /* Disable all transitions for users with reduced motion preference */
+    * {
+        transition: none !important;
+    }
+}

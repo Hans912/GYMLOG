@@ -223,3 +223,9 @@ a{
     }
 }
 
+@media (prefers-reduced-motion: reduce) {
+    /* Disable all transitions for users with reduced motion preference */
+    * {
+        transition: none !important;
+    }
+}

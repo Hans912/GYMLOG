@@ -189,3 +189,10 @@ a{
         border-top: 1px solid #333;
     }
 }
+
+@media (prefers-reduced-motion: reduce) {
+    /* Disable all transitions for users with reduced motion preference */
+    * {
+        transition: none !important;
+    }
+}
