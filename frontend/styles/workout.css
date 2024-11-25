@@ -112,6 +112,10 @@ body {
   button:hover {
     background-color: #007bff;
   }
+
+  button:focus {
+    background-color: #007bff;
+  }
   
   button:disabled {
     background-color: #cccccc;
