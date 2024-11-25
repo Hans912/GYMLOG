@@ -146,11 +146,11 @@ a{
 }
   
 
-
+/* 
 @media (prefers-color-scheme: dark) {
     header {
-        background-color: #222; /* Darker header background */
-        color: #f4f4f9; /* Light text for contrast */
+        background-color: #222; 
+        color: #f4f4f9; 
     }
 
     header h1 {
@@ -162,19 +162,19 @@ a{
     }
 
     body {
-        background-color: #121212; /* Darker body background for a true dark mode */
-        color: #e0e0e0; /* Light text for readability */
+        background-color: #121212;
+        color: #e0e0e0;
     }
 
     main {
-        background-color: #1e1e1e; /* Darker container background */
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
-        border: 1px solid #444; /* Border to distinguish the main area */
+        background-color: #1e1e1e; 
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); 
+        border: 1px solid #444; 
     }
 
     footer {
-        background-color: #222; /* Match header background */
-        color: #f4f4f9; /* Consistent text color */
+        background-color: #222; 
+        color: #f4f4f9; 
     }
 
     footer p {
@@ -182,26 +182,110 @@ a{
     }
 
     a {
-        color: #1e90ff; /* Bright blue for better contrast and visibility */
+        color: #1e90ff; 
     }
 
     #routine-details ul li {
-        background-color: #2b2b2b; /* Darker card background */
-        border-color: #444; /* Subtle border */
+        background-color: #2b2b2b; 
+        border-color: #444; 
     }
 
     .set-log input {
-        background-color: #333; /* Darker input background */
-        color: #f4f4f9; /* Light input text */
-        border: 1px solid #555; /* Border for definition */
+        background-color: #333; 
+        color: #f4f4f9; 
+        border: 1px solid #555; 
+    }
+
+    button {
+        background-color: #1e90ff;
+        color: #f4f4f9;
+    }
+
+    button:hover {
+        background-color: #0073e6; 
+    }
+} */
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #121212; /* True dark mode background */
+        color: #e0e0e0; /* Light gray for text */
+    }
+
+    header {
+        background-color: #1f1f1f; /* Slightly lighter header for separation */
+        color: #f4f4f9;
+        border-bottom: 1px solid #333; /* Subtle bottom border */
+    }
+
+    header h1 {
+        color: #f4f4f9;
+    }
+
+    header nav a {
+        color: #1e90ff; /* Vibrant link color */
+        font-weight: bold;
+    }
+
+    header nav a:hover {
+        text-decoration: underline; /* Feedback on hover */
+    }
+
+    main {
+        background-color: #1e1e1e; /* Main content area background */
+        border: 1px solid #444; /* Border to define content */
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.6); /* Depth for main content */
+        padding: 1.5rem;
+    }
+
+    h2 {
+        color: #1e90ff; /* Highlighted section headers */
+        border-bottom: 2px solid #1e90ff;
+    }
+
+    #routine-details ul li {
+        background-color: #252525; /* Card-like background for routines */
+        border: 1px solid #444;
+        border-radius: 8px;
+        padding: 1rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Slight shadow for emphasis */
+    }
+
+    .set-log input {
+        background-color: #2b2b2b; /* Darker input fields */
+        color: #f4f4f9; /* Light text for readability */
+        border: 1px solid #444; /* Subtle borders */
+        border-radius: 6px;
     }
 
     button {
         background-color: #1e90ff; /* Vibrant button color */
-        color: #f4f4f9; /* Light text for readability */
+        color: #f4f4f9;
+        border: none;
+        padding: 0.7rem 1rem;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 1rem;
     }
 
     button:hover {
-        background-color: #0073e6; /* Slightly darker on hover */
+        background-color: #0073e6; /* Slightly darker blue for hover effect */
+    }
+
+    footer {
+        background-color: #1f1f1f;
+        color: #f4f4f9;
+        border-top: 1px solid #333; /* Subtle border at the top */
+        padding: 1rem;
+    }
+
+    footer p {
+        color: #f4f4f9;
+    }
+
+    footer a {
+        color: #1e90ff; /* Vibrant footer links */
     }
 }
+
