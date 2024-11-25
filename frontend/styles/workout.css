@@ -25,7 +25,8 @@ body {
   
   /* Main container styling */
   main {
-    max-width: 800px;
+    margin: auto;
+    width: 80%;
     /* margin: 2rem auto; */
     padding: 1rem;
     background: white;
