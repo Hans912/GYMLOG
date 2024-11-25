@@ -127,7 +127,7 @@ a{
     text-decoration: none;
     color: white;
 }
-
+/* 
 @media (prefers-color-scheme: dark) {
     body {
         background-color: #121212;
@@ -160,6 +160,68 @@ a{
     footer {
         background-color: #222;
         color: #f4f4f9;
+    }
+
+    footer a {
+        color: #1e90ff;
+    }
+} */
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #121212;
+        color: #e0e0e0;
+    }
+
+    header {
+        background-color: #1f1f1f;
+        color: #f4f4f9;
+        border-bottom: 1px solid #333;
+    }
+
+    header nav a {
+        color: #1e90ff;
+        font-weight: bold;
+    }
+
+    header nav a:hover {
+        text-decoration: underline;
+    }
+
+    main {
+        background-color: #1e1e1e;
+        border: 1px solid #444;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.6);
+    }
+
+    .workout {
+        background-color: #252525;
+        border: 1px solid #444;
+        border-radius: 8px;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .workout h2 {
+        color: #1e90ff;
+    }
+
+    .workout button {
+        background-color: #1e90ff;
+        color: #f4f4f9;
+        border-radius: 6px;
+    }
+
+    .workout button:hover {
+        background-color: #0073e6;
+    }
+
+    footer {
+        background-color: #1f1f1f;
+        color: #f4f4f9;
+        border-top: 1px solid #333;
     }
 
     footer a {

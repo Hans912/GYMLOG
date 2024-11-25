@@ -116,7 +116,7 @@ footer a{
     }
 
     footer a {
-        color: #1e90ff;
+        color: white;
     }
 
     h1, h2 {
@@ -134,10 +134,6 @@ footer a{
 
     .button button:hover {
         background-color: #0073e6;
-    }
-
-    a{
-        color: white;
     }
 }
 
