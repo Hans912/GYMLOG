@@ -30,8 +30,8 @@ document.addEventListener('DOMContentLoaded', async () => {
                   ${Array.from({ length: ex.sets }, (_, i) => `
                     <div class="set-log">
                       <label>Set ${i + 1}: </label>
-                      <input type="number" placeholder="Weight (kg)" class="weight" />
-                      <input type="number" placeholder="Reps" class="reps" />
+                      <input type="number" placeholder="Weight (kg)" aria-label="Weight" class="weight" />
+                      <input type="number" placeholder="Reps" aria-label="Reps" class="reps" />
                     </div>
                   `).join('')}
                 </div>
