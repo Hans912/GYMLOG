@@ -98,44 +98,7 @@ footer a{
     background-color: #005BC3;
     color: white;
 }
-/* 
-@media (prefers-color-scheme: dark) {
-    body {
-        background-color: #121212;
-        color: #e0e0e0;
-    }
 
-    header {
-        background-color: #222;
-        color: #f4f4f9;
-    }
-
-    footer {
-        background-color: #222;
-        color: #f4f4f9;
-    }
-
-    footer a {
-        color: white;
-    }
-
-    h1, h2 {
-        color: #f4f4f9;
-    }
-
-    .container {
-        background-color: #121212;
-    }
-
-    .button button {
-        background-color: #1e90ff;
-        color: #f4f4f9;
-    }
-
-    .button button:hover {
-        background-color: #0073e6;
-    }
-} */
 
 @media (prefers-color-scheme: dark) {
     body {
