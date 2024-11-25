@@ -149,7 +149,7 @@ a{
         text-decoration: underline;
     }
 
-    main {
+    #log-container {
         background-color: #1e1e1e;
         border: 1px solid #444;
         border-radius: 8px;
