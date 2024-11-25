@@ -108,6 +108,9 @@ footer a{
 
     a{
         color: #1e90ff;
+    }
+
+    a:hover{
         text-decoration: underline;
     }
 
