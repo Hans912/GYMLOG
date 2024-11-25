@@ -108,6 +108,7 @@ footer a{
 
     a{
         color: #1e90ff;
+        text-decoration: underline;
     }
 
     header {
@@ -118,6 +119,10 @@ footer a{
 
     header h1{
         color: white;
+    }
+
+    header nav a:hover {
+        text-decoration: underline;
     }
 
     footer {
