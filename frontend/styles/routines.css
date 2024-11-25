@@ -185,11 +185,6 @@ a{
         color:#f4f4f9;
     }
 
-    header nav a {
-        color: #1e90ff; /* Vibrant link color */
-        font-weight: bold;
-    }
-
     header nav a:hover {
         text-decoration: underline; /* Feedback for hover states */
     }
