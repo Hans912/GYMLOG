@@ -149,14 +149,14 @@ footer a{
         border-bottom: 1px solid #333;
     }
 
+    header h1{
+        color: white;
+    }
+
     footer {
         background-color: #1f1f1f;
         color: #f4f4f9;
         border-top: 1px solid #333;
-    }
-
-    footer a {
-        color: #1e90ff;
     }
 
     h1, h2 {
@@ -166,13 +166,6 @@ footer a{
     img {
         border: 1px solid #444;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-    }
-
-    .container {
-        background-color: #1e1e1e;
-        border-radius: 8px;
-        padding: 1rem;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.6);
     }
 
     .button button {
