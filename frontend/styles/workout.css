@@ -145,3 +145,14 @@ a{
     color: white;
 }
   
+
+
+@media (prefers-color-scheme: dark) {
+    body{
+        background-color: black;
+    }
+
+    main{
+        background-color: #555;
+    }
+}
