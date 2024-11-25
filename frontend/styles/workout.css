@@ -24,7 +24,7 @@ body {
   }
   
   /* Main container styling */
-  main {
+  .routines {
     margin: auto;
     width: 80%;
     /* margin: 2rem auto; */
@@ -169,7 +169,7 @@ a{
         text-decoration: underline; /* Feedback on hover */
     }
 
-    main {
+    .routines {
         background-color: #1e1e1e; /* Main content area background */
         border: 1px solid #444; /* Border to define content */
         border-radius: 8px;
