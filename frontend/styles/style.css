@@ -135,6 +135,10 @@ footer a{
     .button button:hover {
         background-color: #0073e6;
     }
+
+    a{
+        color: white;
+    }
 }
 
   
