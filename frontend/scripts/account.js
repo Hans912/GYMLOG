@@ -5,6 +5,8 @@ const username = sessionStorage.getItem('username');
 if (!username) {
   window.location.href = 'login.html';
 } else {
+  document.getElementById('greeting').textContent = `Hello, ${username}! Here are your past workouts!`;
+
   document.addEventListener('DOMContentLoaded', async () => {
     const logContainer = document.getElementById('log-container');
   
