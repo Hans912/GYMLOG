@@ -107,7 +107,7 @@ footer a{
     }
 
     a{
-        color: white;
+        color: #1e90ff;
     }
 
     header {
@@ -121,6 +121,12 @@ footer a{
     }
 
     footer {
+        background-color: #1f1f1f;
+        color: #f4f4f9;
+        border-top: 1px solid #333;
+    }
+
+    footer a{
         background-color: #1f1f1f;
         color: #f4f4f9;
         border-top: 1px solid #333;
