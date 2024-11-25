@@ -168,3 +168,38 @@ a{
     text-decoration: none;
     color: white;
 }
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #121212;
+        color: #e0e0e0;
+    }
+
+    header {
+        background-color: #222;
+        color: #f4f4f9;
+    }
+
+    header nav a {
+        color: #1e90ff;
+    }
+
+    main {
+        background-color: #1e1e1e;
+        border: 1px solid #444;
+    }
+
+    .routine {
+        background-color: #2b2b2b;
+        border-color: #444;
+    }
+
+    footer {
+        background-color: #222;
+        color: #f4f4f9;
+    }
+
+    footer a {
+        color: #1e90ff;
+    }
+}
